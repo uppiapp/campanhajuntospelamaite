@@ -78,11 +78,11 @@ export async function POST(request: Request) {
       const data = await response.json().catch(() => ({}))
 
       if (!response.ok || data.status === 'error') {
-        console.error('Erro na Paradise API:', response.status, data)
+        console.error('Erro na API PIX:', response.status, data)
         return NextResponse.json(
           {
             success: false,
-            error: data.message || data.error || 'Falha ao processar pagamento na Paradise.',
+            error: data.message || data.error || 'Falha ao processar pagamento PIX.',
           },
           { status: response.status || 400 }
         )
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
 
       if (!pixCode) {
         return NextResponse.json(
-          { success: false, error: 'Chave PIX não retornada pela Paradise.' },
+          { success: false, error: 'Chave PIX não retornada pelo servidor.' },
           { status: 500 }
         )
       }
